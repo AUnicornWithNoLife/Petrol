@@ -276,6 +276,10 @@ def load(sid):
 
     return out
 
+def saveINV(sid):
+    with openfi('ASSETS/SAVES/' + sid + '/data.config', 'wb') as dataf:
+        pickle.dump("INV", dataf)
+
 def loadData(sid):
     data = None
 

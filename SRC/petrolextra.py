@@ -1,4 +1,7 @@
+import os
+
 import petrolasset as asset
+import pretty
 
 def menu(info, stats):
     d = asset.openfi("ASSETS/SETTINGS/config.txt", "r")
@@ -104,3 +107,41 @@ def menu(info, stats):
             input()
 
         print()
+
+def editsave():
+    while True:
+        ids = []
+
+        for i in range(6):
+            data = None
+            good = None
+
+            try:
+                data = "<GREEN>" + asset.loadData(str(i))[0] + "<ENDC>"
+
+                good = True
+
+                if (asset.loadData(str(i))[0] == "INV"):
+                    data = "<RED>Empty<ENDC>"
+                    
+                    good = False
+            except:
+                data = "<RED>Empty<ENDC>"
+
+                good = False
+            
+            ids.append([str(i), data, good])
+
+        asset.clear()
+        
+        for i in ids:
+            pretty.pprint(i[0] + " ~ " + i[1])
+
+        print()
+
+        delno = input("DEL? ")
+
+        if delno == "exit":
+            return
+
+        asset.saveINV(delno)

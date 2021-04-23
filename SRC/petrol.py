@@ -152,6 +152,11 @@ while True:
             data = "<GREEN>" + asset.loadData(str(i))[0] + "<ENDC>"
 
             good = True
+
+            if (asset.loadData(str(i))[0] == "INV"):
+                data = "<RED>Empty<ENDC>"
+                
+                good = False
         except:
             data = "<RED>Empty<ENDC>"
 
